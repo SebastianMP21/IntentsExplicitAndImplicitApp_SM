@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgPerro"
+            android:layout_width="304dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_fino"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Sebastian Marquez"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/tvEmailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="sebastian.marquez@tecsup.edu.pe"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:id="@+id/tvOfficeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Los Portales Sta Anita 210"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/tvPhoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="922661570"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/EditButton"
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="SendExplicity"
+            android:text="Editar"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <LinearLayout
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button_llamar"
+                    android:layout_width="79dp"
+                    android:layout_height="60dp"
+                    android:drawableRight="@drawable/telef"/>
+
+                <Button
+                    android:id="@+id/button_whats"
+                    android:layout_width="129dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:drawableRight="@drawable/imc_wsp"
+                    android:text="Whatsapp"
+                    android:onClick="openWhatsApp"/>
+
+                <Button
+                    android:id="@+id/button_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Mensaje"
+                    android:drawableRight="@drawable/sms"
+
+                    />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
