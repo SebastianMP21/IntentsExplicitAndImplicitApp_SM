@@ -1,16 +1,14 @@
 package com.marquez.intentsexplicitandimplicitapp_sm
-
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.Intent.ACTION_DIAL
 import android.net.Uri
+import android.net.Uri.fromParts
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -94,6 +92,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+    fun SendMessage(view: android.view.View){
+        val nombre = tvNameInput.text.toString()
+        val telefono = tvPhoneInput.text.toString()
+        val uri = Uri.parse("smsto: $telefono")
+        val it = Intent(Intent.ACTION_SENDTO,uri)
+        it.putExtra("sms_body", "Hola $nombre solo paso a decirte que no tengo nada que decir")
+        startActivity(it)
+    }
+
+    fun CallPhone(view: View) {
+        val phone = tvPhoneInput.text.toString()
+        val intent = Intent(ACTION_DIAL,Uri.fromParts("tel", phone, null))
+        startActivity(intent)
+    }
+
+
+
     fun openWhatsApp(view: android.view.View) {
         try {
             val text = "This is a test" // Replace with your message.

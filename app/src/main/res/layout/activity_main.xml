@@ -93,7 +93,9 @@
                     android:id="@+id/button_llamar"
                     android:layout_width="79dp"
                     android:layout_height="60dp"
-                    android:drawableRight="@drawable/telef"/>
+                    android:drawableRight="@drawable/telef"
+                    android:onClick="CallPhone"/>
+                    />
 
                 <Button
                     android:id="@+id/button_whats"
@@ -111,6 +113,7 @@
                     android:layout_marginStart="20dp"
                     android:text="Mensaje"
                     android:drawableRight="@drawable/sms"
+                    android:onClick="SendMessage"
 
                     />
             </LinearLayout>
