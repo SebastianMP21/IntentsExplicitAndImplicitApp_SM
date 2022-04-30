@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.marquez.intentsexplicitandimplicitapp_sm.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -19,20 +20,26 @@ const val PARAMETER_EXTRA_PHONE2 = "telefono"
 const val ACTIVITY_A_REQUEST = 991
 const val ACTIVITY_B_REQUEST = 992
 
-
-
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //layoutInflater: Es un constructor de vistas
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        val view = binding.root
+        setContentView(view)
+
 
     }
-
+    //Primer binding
     fun SendExplicity(view: android.view.View) {
-        val nombre = tvNameInput.text.toString()
-        val correo = tvEmailInput.text.toString()
-        val oficina = tvOfficeInput.text.toString()
-        val telefono = tvPhoneInput.text.toString()
+        val nombre = binding.tvNameInput.text.toString()
+        val correo = binding.tvEmailInput.text.toString()
+        val oficina = binding.tvOfficeInput.text.toString()
+        val telefono = binding.tvPhoneInput.text.toString()
         validateInputFields(nombre, correo, oficina, telefono)
         DetailActivity(nombre, correo, oficina, telefono)
     }
@@ -74,47 +81,47 @@ class MainActivity : AppCompatActivity() {
                     val extras = data?.extras
                     if (extras != null) {
                         if (extras.get(PARAMETER_EXTRA_NAME2) != null) {
-                            tvNameInput.setText(extras.getString(PARAMETER_EXTRA_NAME2))
+                            binding.tvNameInput.setText(extras.getString(PARAMETER_EXTRA_NAME2))
                         }
 
                         if (extras.get(PARAMETER_EXTRA_GMAIL2) != null) {
-                            tvEmailInput.setText(extras.getString(PARAMETER_EXTRA_GMAIL2))
+                            binding.tvEmailInput.setText(extras.getString(PARAMETER_EXTRA_GMAIL2))
                         }
 
                         if (extras.get(PARAMETER_EXTRA_OFFICE2) != null) {
-                            tvOfficeInput.setText(extras.getString(PARAMETER_EXTRA_OFFICE2))
+                            binding.tvOfficeInput.setText(extras.getString(PARAMETER_EXTRA_OFFICE2))
                         }
 
                         if (extras.get(PARAMETER_EXTRA_PHONE2) != null) {
-                            tvPhoneInput.setText(extras.getString(PARAMETER_EXTRA_PHONE2))
+                            binding.tvPhoneInput.setText(extras.getString(PARAMETER_EXTRA_PHONE2))
                         }
                     }
                 }
             }
         }
 
-
+    //segundo binding
     fun SendMessage(view: android.view.View){
-        val nombre = tvNameInput.text.toString()
-        val telefono = tvPhoneInput.text.toString()
+        val nombre = binding.tvNameInput.text.toString()
+        val telefono = binding.tvPhoneInput.text.toString()
         val uri = Uri.parse("smsto: $telefono")
         val it = Intent(Intent.ACTION_SENDTO,uri)
         it.putExtra("sms_body", "Hola $nombre solo paso a decirte que no tengo nada que decir")
         startActivity(it)
     }
-
+    //tercer binding
     fun CallPhone(view: View) {
-        val phone = tvPhoneInput.text.toString()
+        val phone = binding.tvPhoneInput.text.toString()
         val intent = Intent(ACTION_DIAL,Uri.fromParts("tel", phone, null))
         startActivity(intent)
     }
 
 
-
+    //cuarto binding
     fun openWhatsApp(view: android.view.View) {
         try {
             val text = "This is a test" // Replace with your message.
-            val telefono = tvPhoneInput.text.toString()
+            val telefono = binding.tvPhoneInput.text.toString()
             "xxxxxxxxxx" // Replace with mobile phone number without +Sign or leading zeros, but with country code
             //Suppose your country is India and your phone number is “xxxxxxxxxx”, then you need to send “91xxxxxxxxxx”.
             val intent = Intent(Intent.ACTION_VIEW)
@@ -124,6 +131,4 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
-
 }

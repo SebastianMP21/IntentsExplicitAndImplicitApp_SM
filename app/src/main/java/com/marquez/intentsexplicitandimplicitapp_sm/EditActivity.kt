@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.marquez.intentsexplicitandimplicitapp_sm.databinding.ActivityEditBinding
+import com.marquez.intentsexplicitandimplicitapp_sm.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,35 +18,38 @@ const val PARAMETER_EXTRA_PHONE = "telefono"
 
 
 class EditActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEditBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         val extras = this.intent.extras
 
         if (extras != null) {
             if (extras.get(PARAMETER_EXTRA_NAME) != null) {
-                edtName.setText(extras.getString(PARAMETER_EXTRA_NAME))
+                binding.edtName.setText(extras.getString(PARAMETER_EXTRA_NAME))
             }
 
             if (extras.get(PARAMETER_EXTRA_GMAIL) != null) {
-                edtEmail.setText(extras.getString(PARAMETER_EXTRA_GMAIL))
+                binding.edtEmail.setText(extras.getString(PARAMETER_EXTRA_GMAIL))
             }
 
             if (extras.get(PARAMETER_EXTRA_OFFICE) != null) {
-                edtOffice.setText(extras.getString(PARAMETER_EXTRA_OFFICE))
+                binding.edtOffice.setText(extras.getString(PARAMETER_EXTRA_OFFICE))
             }
 
             if (extras.get(PARAMETER_EXTRA_PHONE) != null) {
-                edtPhone.setText(extras.getString(PARAMETER_EXTRA_PHONE))
+                binding.edtPhone.setText(extras.getString(PARAMETER_EXTRA_PHONE))
             }
         }
     }
 
     fun GuardarDatos(view: View) {
-        val nombre =edtName.text.toString()
-        val correo = edtEmail.text.toString()
-        val oficina = edtOffice.text.toString()
-        val telefono = edtPhone.text.toString()
+        val nombre =binding.edtName.text.toString()
+        val correo = binding.edtEmail.text.toString()
+        val oficina = binding.edtOffice.text.toString()
+        val telefono = binding.edtPhone.text.toString()
         val intent = Intent(this,MainActivity::class.java)
         intent.putExtra("nombre", nombre)
         intent.putExtra("correo", correo)
